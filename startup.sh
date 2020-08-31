@@ -114,6 +114,19 @@ if [ "$ORACLE_ALLOW_REMOTE" = true ]; then
   echo "alter system disable restricted session;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
 fi
 
+if [ -n "$SCHEMA" ]; then
+  echo "Creating schema $SCHEMA"
+  echo "create user $SCHEMA identified by $ORACLE_PASSWORD;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "GRANT create session TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "GRANT create table TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "GRANT create view TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "GRANT create any trigger TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "GRANT create any procedure TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "GRANT create sequence TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD" 
+  echo "GRANT create synonym TO $SCHEMA;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+  echo "alter user $SCHEMA quota unlimited on system;" | sqlplus -s "SYSTEM/$ORACLE_PASSWORD"
+fi
+
 echo "Running startup scripts ..."
 
 for f in /docker-entrypoint-initdb.d/*; do
