@@ -61,7 +61,8 @@ ADD init.sql /docker-entrypoint-initdb.d/
 ### Environment variables
 
 * `ORACLE_PASSWORD` : Changes SYS and SYSTEM password to this value
-* `RELAX_SECURITY` : If set to 1, a relaxed password policy profile will be put in place with this parameters for `SYS` and `SYSTEM` : 
+* `RELAX_SECURITY` : If set to 1, a relaxed password policy profile will be put in place with this parameters for `SYS` and `SYSTEM`
+* `SCHEMA` : Creates a new schema with the provided name
 
 ```
 CREATE PROFILE NOEXPIRY LIMIT
