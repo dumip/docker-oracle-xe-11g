@@ -79,6 +79,6 @@ CREATE PROFILE NOEXPIRY LIMIT
 Example:
 
 ```bash
-$ docker run -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true -e ORACLE_PASSWORD=testpassword -e RELAX_SECURITY=1 epiclabs/docker-oracle-xe-11g
+$ docker run -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true -e ORACLE_PASSWORD=testpassword -e RELAX_SECURITY=1 -e SCHEMA=my_schema_name epiclabs/docker-oracle-xe-11g
 ```
 
